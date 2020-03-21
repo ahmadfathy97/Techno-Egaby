@@ -1,0 +1,24 @@
+body{
+  background: rgba(255, 217, 99, 0.65) !important;
+  padding-top: 80px !important;
+}
+iframe{
+
+}
+.name{
+  cursor: pointer;
+}
+.name:hover{
+  color: #222 !important
+}
+.comments{
+  max-height: 80vh;
+  overflow: auto
+}
+.comments li{
+  list-style-type: none;
+  background: rgba(255, 241, 9, 0.37);
+}
+.comments li:nth-of-type(odd){
+  background: rgba(217, 216, 194, 0.2)
+}
