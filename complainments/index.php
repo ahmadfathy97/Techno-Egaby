@@ -31,16 +31,15 @@
 
   if (!empty($err)) {
     foreach ($err as $msgError) {
-      echo $msgError .'<br>';
+      echo '<div class="alert alert-danger">' . $msgError . '</div>';
     }
   }else{
     mail($my_email , $msg_title , $msg  , $from);
-    echo '<div class="alert alert-warning border-warning shadow">تم ارسال الرسالة سيتم الرد عليك في اسرع وقت</div>';
+    echo '<div class="alert alert-warning shadow border-warning">تم ارسال الرسالة بنجاح سيتم الرد عليك في اسرع وقت </div>';
   }
 }
 ?>
   <link rel="stylesheet" href="../public/style/main.css">
-  <!-- <link rel="stylesheet" href="./style/complainment.css"> -->
 </head>
 <body>
   <?php
@@ -53,7 +52,7 @@
       </div>
       <div class="col-md-12">
         <div class="form-container border rounded shadow p-5">
-          <form action="" method="post">
+          <form class="" action="index.html" method="post">
             <div class="form-group">
               <label>البريد الالكتروني</label>
               <input name="email" type="email" required
@@ -63,15 +62,19 @@
             </div>
             <div class="form-group">
               <label> عنوان الاشكوى او المفترح</label>
-              <input name ="msg_title" type="text" maxlength="30" required
-                oninvalid="this.setCustomValidity('يجب عليك ملءهذا الحقل')"
+              <input name ="msg_title" type="text" required
+                minlength="3"
+                maxlength="70"
+                oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-70) حرف فقط')"
                 oninput="this.setCustomValidity('')"
                 class="form-control" />
             </div>
             <div class="form-group">
               <label>الشكوى او المقترح</label>
               <textarea name="msg" required
-                oninvalid="this.setCustomValidity('يجب عليك ملءهذا الحقل')"
+                minlength="3"
+                maxlength="900"
+                oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-900) حرف فقط')"
                 oninput="this.setCustomValidity('')"
                 class="form-control" ></textarea>
             </div>
@@ -88,8 +91,5 @@
   <?php
     include '../components/footer.php';
   ?>
-  <!-- <script src="./script/complainment.js"></script> -->
-
-
 </body>
 </html>

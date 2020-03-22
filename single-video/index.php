@@ -19,7 +19,7 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
   $video = $allVaideo->fetch();
   $count =  $allVaideo->rowCount();
   if ($count != 1 || $video['accept']==0) {
-    echo 'not found :(';
+    echo '<div class="alert alert-danger">لا يوجد هذا الفيديو</div>';
   }else{
     parse_str(parse_url($video['vid_url'],PHP_URL_QUERY),$arr);
     echo '
@@ -74,13 +74,13 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">صاحب الفيديو</h5>
+              <h5 class="modal-title" id="exampleModalLabel">'.$video['name'].'</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              
+              '.$video['call_me'].'
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
@@ -92,13 +92,13 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
     </div>';
   }
 }else{
-  header('location:index.php');
+  header('location:../');
 }
 
 
 ?>
 
-  
+
 
   <?php
     include '../components/footer.php';

@@ -64,7 +64,7 @@
 
     if (!empty($err)) {
       foreach ($err as $msgError) {
-        echo $msgError . '<br>';
+        echo '<div class="alert alert-danger">' . $msgError . '</div>';
       }
     }else{
       //insert DB
@@ -72,12 +72,11 @@
                 VALUES('$vid_title' , '$vid_link' , '$vid_desc ','$name','$call' ,0 )";
       $q_ins = $conn->prepare($ins);
       $q_ins->execute();
-      echo '<div class="alert alert-warning border-warning shadow"> تم ارسال الفيديو سوف يتم الموافقة عليه قريبا</div>';
+      echo '<div class="alert alert-warning shadow border-warning">شكرا لمساهمتك سيتم مراجعة الفيديو والموافقة عليه في اسرع وقت</div>';
     }
 
   }
 ?>
-  <!-- <link rel="stylesheet" href="./style/post-video.css"> -->
 </head>
 <body>
   <?php
@@ -94,7 +93,9 @@
             <div class="form-group">
               <label>عنوان الفيديو</label>
               <input type="text" required
-                oninvalid="this.setCustomValidity('يجب عليك ملءهذا الحقل')"
+                minlength="3"
+                maxlength="100"
+                oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-100) حرف فقط')"
                 oninput="this.setCustomValidity('')"
                 class="form-control"
                 name="vid_title" />
@@ -110,19 +111,25 @@
             <div class="form-group">
               <label>وصف الفيديو</label>
               <textarea name="vid_desc" class="form-control" required
-                oninvalid="this.setCustomValidity('يجب عليك ملءهذا الحقل')"
+                minlength="3"
+                maxlength="500"
+                oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-500) حرف فقط')"
                 oninput="this.setCustomValidity('')"></textarea>
             </div>
             <div class="form-group">
               <label>اسم المشارك</label>
               <input name="name" type="text" required
-                oninvalid="this.setCustomValidity('يجب عليك ملءهذا الحقل')"
+                minlength="3"
+                maxlength="50"
+                oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-50) حرف فقط')"
                 oninput="this.setCustomValidity('')" class="form-control" />
             </div>
             <div class="form-group">
               <label>روابط التواصل او الهاتف</label>
               <textarea name="call" class="form-control" required
-                oninvalid="this.setCustomValidity('يجب عليك ملءهذا الحقل')"
+                minlength="3"
+                maxlength="500"
+                oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-500) حرف فقط')"
                 oninput="this.setCustomValidity('')"></textarea>
             </div>
             <div class="form-group">
@@ -134,12 +141,9 @@
     </div>
   </div>
 
-
   <?php
     include '../components/footer.php';
   ?>
-  <!-- <script src="../script/post-video.js"></script> -->
-
 
 </body>
 </html>

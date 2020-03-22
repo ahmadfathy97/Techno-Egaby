@@ -1,37 +1,44 @@
-<?php 
+<?php
 
 session_start();
 if (isset($_SESSION['user'])) {
-  include '../components/header.php'; 
-  include '../../connDB.php'; 
+  include '../components/header.php';
+  include '../../connDB.php';
   if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
     $id_video = $_GET['id'];
+    //accept video
     if (isset($_GET['accp'])) {
       $update =$conn->prepare("UPDATE video SET accept= 1  WHERE id='$id_video'") ;
       $update->execute();
-      header('location:../index.php');
-      
+      header('location:../index');
     }
+    //Unaccept video
     if (isset($_GET['unaccp'])) {
       $update =$conn->prepare("UPDATE video SET accept= 0  WHERE id='$id_video'") ;
       $update->execute();
-      header('location:../index.php');
-      
+      header('location:../');
     }
+    //Delete video
+    if (isset($_GET['del'])) {
+        $del = $conn->prepare("DELETE FROM video WHERE id = '$id_video'");
+        $del->execute();
+        header('location:../');
+    }
+
     $Allvideo=$conn->prepare("SELECT * FROM video WHERE id = '$id_video' ");
     $Allvideo->execute();
     $video=$Allvideo->fetch();
     $count =  $Allvideo->rowCount();
     if ($count != 1) {
-      echo 'error :(';
+      echo '<div class="alert alert-danger">لا يوجد هذ الفيديو</div>'
     }else{
       ?>
       </head>
 <body>
-  <?php 
+  <?php
   include '../components/nav.php';
    parse_str(parse_url($video['vid_url'],PHP_URL_QUERY),$arr);
-  echo ' 
+  echo '
     <div class="container">
 
       <div class="row mt-5">
@@ -53,7 +60,7 @@ if (isset($_SESSION['user'])) {
               }
 
 
-              
+
       echo'   </div>
           </div>
         </div>
@@ -76,7 +83,7 @@ if (isset($_SESSION['user'])) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">إغلاق</button>
-            <a href="?del&id='.$video['id'].'" type="button" class="btn btn-danger" data-dismiss="modal">حذف</a>
+            <a href="?del&id='.$video['id'].'" type="button" class="btn btn-danger">حذف</a>
           </div>
         </div>
       </div>
@@ -86,9 +93,9 @@ if (isset($_SESSION['user'])) {
   }else{
     echo 'error :(';
   }
-  
+
 }else{
-  header('location:login.php');
+  header('location:login');
 }
 
 ?>
@@ -96,4 +103,3 @@ if (isset($_SESSION['user'])) {
   <?php include '../components/footer.php'; ?>
 </body>
 </html>
-

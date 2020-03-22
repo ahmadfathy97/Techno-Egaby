@@ -23,21 +23,26 @@
         echo '
         <div class="col-md-6">
           <div class="video m-1 p-3 border shadow">
-            <h2 class="video-title">'.$video['vid_title'].'</h2>
-            <p class="small-desc">'.$video['vid_desc'].'</p>
+            <h2 class="video-title">'.$video['vid_title'].'</h2>';
+            if (strlen($video['vid_desc'])<30) {
+                echo '<p class="small-desc">'.$video['vid_desc'].'</p>';
+              }else{
+                $desc=substr($video['vid_desc'], 0,30);
+                echo '<p class="small-desc">'.$desc.'...</p>';
+              }
+            echo '
             <a href="../single-video?id='.$video['id'].'" class="btn btn-warning" role="button">مشاهدة الفيديو</a>
           </div>
         </div>';
-         
+
         }
       ?>
-      
+
 
     </div>
   </div>
   <?php
     include '../components/footer.php';
   ?>
-  <!-- <script src="./script/complainment.js"></script> -->
 </body>
 </html>

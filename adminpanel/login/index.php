@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
     $_SESSION['user']=$user;
     header('location:../');
   }else{
-    echo '<div style="color:red">تأكد ان اسم المستخدم والرقم السرى صحيح</div>';
+    echo '<div class="alert alert-danger">تأكد ان اسم المستخدم والرقم السرى صحيح</div>';
   }
 }
 

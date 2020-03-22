@@ -1,5 +1,8 @@
 <?php
-  session_start();
-  unset($_SESSION["user"]);
-  header("Location: login");
-?>
+ob_start();
+session_start();
+if (isset($_SESSION['user'])) {
+	session_unset();
+	header('location:/');
+}
+ob_end_flush();
