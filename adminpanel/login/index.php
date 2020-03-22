@@ -34,11 +34,13 @@ if (isset($_POST['login'])) {
         <form action="" method="post">
           <div class="form-group">
             <label>اسم المستخدم</label>
-            <input name="user" type="text" required class="form-control" />
+            <input name="user" type="text" oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل ')"
+            oninput="this.setCustomValidity('')" required class="form-control" />
           </div>
           <div class="form-group">
             <label>كلمة السر</label>
-            <input name="pass" type="password" class="form-control" required />
+            <input name="pass" type="password"  oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل ')"
+            oninput="this.setCustomValidity('')" class="form-control" required />
           </div>
           <div class="form-group">
             <input type="submit" name="login" value="دخول" class="form-control btn btn-primary" />

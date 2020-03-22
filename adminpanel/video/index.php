@@ -10,7 +10,7 @@ if (isset($_SESSION['user'])) {
     if (isset($_GET['accp'])) {
       $update =$conn->prepare("UPDATE video SET accept= 1  WHERE id='$id_video'") ;
       $update->execute();
-      header('location:../index');
+      header('location:../');
     }
     //Unaccept video
     if (isset($_GET['unaccp'])) {
@@ -30,7 +30,7 @@ if (isset($_SESSION['user'])) {
     $video=$Allvideo->fetch();
     $count =  $Allvideo->rowCount();
     if ($count != 1) {
-      echo '<div class="alert alert-danger">لا يوجد هذ الفيديو</div>'
+      echo '<div class="alert alert-danger">لا يوجد هذ الفيديو</div>';
     }else{
       ?>
       </head>

@@ -1,7 +1,6 @@
 .video{
   position: relative;
   overflow: hidden;
-  cursor: pointer
 }
 .video::after{
   content: '';

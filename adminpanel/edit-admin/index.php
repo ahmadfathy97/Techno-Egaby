@@ -59,6 +59,7 @@ if (isset($_SESSION['user'])) {
     ?>
     </head>
     <body class="bg-dark text-light">
+      <?php include '../components/nav.php';?>
 
       <div class="container">
         <div class="row">
@@ -69,15 +70,18 @@ if (isset($_SESSION['user'])) {
             <form action="" method="post">
               <div class="form-group">
                 <label>اسم المستخدم</label>
-                <input name="username" minlength="3" maxlength="30" value="<?php if(isset($username)){echo $username;}else{echo $user['user'];}  ?>" type="text" required class="form-control" />
+                <input name="username" minlength="3" maxlength="30" oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (5-30) حرف فقط')"
+                oninput="this.setCustomValidity('')" value="<?php if(isset($username)){echo $username;}else{echo $user['user'];}  ?>" type="text" required class="form-control" />
               </div>
               <div class="form-group">
                 <label>كلمة السر</label>
-                <input name="password" minlength="5" maxlength="30" value="<?php if(isset($password)){echo $password;}  ?>" type="password" class="form-control"  />
+                <input name="password" minlength="5" maxlength="30" oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (5-30) حرف فقط')"
+                oninput="this.setCustomValidity('')" value="<?php if(isset($password)){echo $password;}  ?>" type="password" class="form-control"  />
               </div>
               <div class="form-group">
                 <label>تأكيد كلمة السر</label>
-                <input name="confirm_password" minlength="5" maxlength="30" value="<?php if(isset($confirm_password)){echo $password;}  ?>"  type="password" class="form-control"  />
+                <input name="confirm_password" minlength="5" maxlength="30" oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (5-30) حرف فقط')"
+                oninput="this.setCustomValidity('')" value="<?php if(isset($confirm_password)){echo $password;}  ?>"  type="password" class="form-control"  />
               </div>
               <div class="form-group">
                 <input type="submit" name="edit" value="تعديل" class="form-control btn btn-primary" />

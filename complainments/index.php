@@ -52,7 +52,7 @@
       </div>
       <div class="col-md-12">
         <div class="form-container border rounded shadow p-5">
-          <form class="" action="index.html" method="post">
+          <form class="" action="" method="post">
             <div class="form-group">
               <label>البريد الالكتروني</label>
               <input name="email" type="email" required
