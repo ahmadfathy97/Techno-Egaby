@@ -1,6 +1,6 @@
 <?php
   include '../components/header.php';
-  include 'connDB.php';
+  include '../connDB.php';
  
   if (isset($_POST['upload'])) {
     $vid_title    = filter_var($_POST['vid_title'],FILTER_SANITIZE_STRING);

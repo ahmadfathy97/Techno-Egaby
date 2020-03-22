@@ -1,5 +1,5 @@
 <?php
-  include 'config/connDB.php';
+  include '../connDB.php';
   include '../components/header.php';
 ?>
   <link rel="stylesheet" href="./style/videos.css">

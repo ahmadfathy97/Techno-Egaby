@@ -1,5 +1,6 @@
 <?php
   include './components/header.php';
+   include "connDB.php";
 ?>
   <link rel="stylesheet" href="./public/style/home.css">
 

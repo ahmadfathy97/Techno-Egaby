@@ -1,6 +1,7 @@
 <?php
-include 'config/connDB.php';
+
   include '../components/header.php';
+  include '../connDB.php';
 ?>
   <link rel="stylesheet" href="./style/single-video.css">
 </head>
