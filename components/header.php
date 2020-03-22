@@ -1,5 +1,5 @@
 <?php
-  
+
   $title;
   if($_SERVER['REQUEST_URI'] === '/videos/'){
     $title = 'الفيديوهات';
@@ -7,6 +7,8 @@
     $title = 'نشر فيديو';
   } else if($_SERVER['REQUEST_URI'] === '/complainments/'){
     $title = 'الشكاوى والمقترحات';
+  } else if($_SERVER['REQUEST_URI'] === '/about/'){
+    $title = 'من نحن';
   } else{
     $title = 'Techno-Egaby';
   }

@@ -16,6 +16,9 @@
       <li class="nav-item">
         <a class="nav-link <?php if($_SERVER['REQUEST_URI'] === '/complainments/') echo 'active'?>" href="/complainments">شكاوى ومقترحات</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link <?php if($_SERVER['REQUEST_URI'] === '/about/') echo 'active'?>" href="/about">من نحن</a>
+      </li>
     </ul>
   </div>
 </nav>
