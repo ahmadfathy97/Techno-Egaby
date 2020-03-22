@@ -1,14 +1,14 @@
 <?php
   include '../components/header.php';
   include '../connDB.php';
- 
+
   if (isset($_POST['upload'])) {
     $vid_title    = filter_var($_POST['vid_title'],FILTER_SANITIZE_STRING);
     $vid_link     = filter_var($_POST['vid_link'],FILTER_SANITIZE_URL);
     $vid_desc     = filter_var($_POST['vid_desc'],FILTER_SANITIZE_STRING);
     $name       = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
     $call       = filter_var($_POST['call'],FILTER_SANITIZE_STRING);
-    
+
     $err = array();
     //Valdate video title
     if (empty($vid_title)) {
@@ -38,15 +38,15 @@
       }
 
     }
-    
-    //validate description video  
+
+    //validate description video
     if (strlen($vid_desc)<3 && !empty($vid_desc)) {
       $err[]= "the description video must more than 3 char ";
     }elseif (strlen($vid_desc)>=500) {
       $err[]= "the description video must leth than 500 char ";
     }
 
-    //Valdate name 
+    //Valdate name
     if (empty($name)) {
       $err[]= "the name  video must write ";
     }elseif (strlen($name)<3) {
@@ -55,7 +55,7 @@
       $err[]= "the name must leth than 50 char ";
     }
 
-    //validate call  
+    //validate call
     if (strlen($call)<3 && !empty($call)) {
       $err[]= "the call must more than 3 char ";
     }elseif (strlen($call)>=500) {
@@ -68,11 +68,11 @@
       }
     }else{
       //insert DB
-      $ins = "INSERT INTO video (vid_title , vid_url , vid_desc , name , call_me , accept) 
+      $ins = "INSERT INTO video (vid_title , vid_url , vid_desc , name , call_me , accept)
                 VALUES('$vid_title' , '$vid_link' , '$vid_desc ','$name','$call' ,0 )";
       $q_ins = $conn->prepare($ins);
       $q_ins->execute();
-      echo "Send video accept :)";
+      echo '<div class="alert alert-warning border-warning shadow"> تم ارسال الفيديو سوف يتم الموافقة عليه قريبا</div>';
     }
 
   }
@@ -96,7 +96,7 @@
               <input type="text" required
                 oninvalid="this.setCustomValidity('يجب عليك ملءهذا الحقل')"
                 oninput="this.setCustomValidity('')"
-                class="form-control" 
+                class="form-control"
                 name="vid_title" />
             </div>
             <div class="form-group">
@@ -104,7 +104,7 @@
               <input type="url" required
                 oninvalid="this.setCustomValidity('يجب ان يحتوي هذا الحقل على رابط الفيديو')"
                 oninput="this.setCustomValidity('')"
-                class="form-control" 
+                class="form-control"
                 name="vid_link"/>
             </div>
             <div class="form-group">

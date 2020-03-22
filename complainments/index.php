@@ -6,13 +6,13 @@
   $msg        = $_POST['msg'];
   $from='from: '.$email.'/r/n';
   $my_email="mahmoudhasan509@gmail.com";
-  
+
 
   $err = array();
   if (filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)==false) {
     $err[]="email is invalid";
   }
-  //validate  title msg 
+  //validate  title msg
   if (empty($msg_title)) {
    $err[]="Enter message title";
   }elseif (strlen($msg_title)<=3) {
@@ -35,6 +35,7 @@
     }
   }else{
     mail($my_email , $msg_title , $msg  , $from);
+    echo '<div class="alert alert-warning border-warning shadow">تم ارسال الرسالة سيتم الرد عليك في اسرع وقت</div>';
   }
 }
 ?>
@@ -52,7 +53,7 @@
       </div>
       <div class="col-md-12">
         <div class="form-container border rounded shadow p-5">
-          <form class="" action="index.html" method="post">
+          <form action="" method="post">
             <div class="form-group">
               <label>البريد الالكتروني</label>
               <input name="email" type="email" required

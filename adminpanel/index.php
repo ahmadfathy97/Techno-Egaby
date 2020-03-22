@@ -1,11 +1,10 @@
-<?php 
+<?php
 session_start();
 if (isset($_SESSION['user'])) {
-  include './components/header.php'; 
+  include './components/header.php';
   include "../connDB.php";
-  include '../connDB.php';
   include './components/nav.php';
-  echo 'User : '.$_SESSION['user'].'<br>';
+  echo '<p class="alert alert-info" >welcome <b>'.$_SESSION['user'].'</b></div>';
   $allVaideo=$conn->query("SELECT * FROM video ");
   ?>
     <div class="container">
@@ -27,29 +26,29 @@ if (isset($_SESSION['user'])) {
             </div>
           </div>
           ';
-          
+
         }
         ?>
 
-        
 
-        
+
+
 
       </div>
     </div>
 
 
-  
+
   <?php
 }else{
-  header('location:login.php');
+  header('location:login');
 }
 
 
 ?>
 </head>
 <body>
-  
+
   <?php include './components/footer.php'; ?>
 </body>
 </html>
