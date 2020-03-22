@@ -21,9 +21,9 @@ if (isset($_SESSION['user'])) {
           <div class="col-md-6">
             <div class="video m-1 p-3 border shadow">';
             if ($video['accept']==0) {
-              echo ' <span class="bg-danger text-light p-1">يحتاج الى موافقه</span>';
+              echo ' <span class="bg-danger text-light px-3 py-1 rounded">يحتاج الى موافقه</span>';
             }else{
-              echo ' <span class="bg-success text-light p-1">تمت المواقه عليه</span>';
+              echo ' <span class="bg-success text-light px-3 py-1 rounded">تمت المواقه عليه</span>';
             }
             echo'
 

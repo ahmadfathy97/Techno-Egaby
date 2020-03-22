@@ -51,12 +51,12 @@ if (isset($_SESSION['user'])) {
             <p class="">'.$video['call_me'].'</p>
             <iframe src="https://www.youtube.com/embed/'.$arr['v'].'" class="m-1" border-0 width="100%" style="height:60vh" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="buttons">
-              <a href="#" class="btn btn-danger float-right" role="button" data-toggle="modal" data-target="#exampleModal">حذف</a>
-              <a href="/adminpanel/edit-video/?id='.$video['id'].'" class="btn btn-info" role="button">تعديل</a>';
+              <a href="#" class="btn btn-danger float-right m-1" role="button" data-toggle="modal" data-target="#exampleModal">حذف</a>
+              <a href="/adminpanel/edit-video/?id='.$video['id'].'" class="btn btn-info m-1" role="button">تعديل</a>';
               if ($video['accept']==0) {
-                echo '<a href="?accp&id='.$video['id'].'" class="btn btn-success" role="button">قبول</a>';
+                echo '<a href="?accp&id='.$video['id'].'" class="btn btn-success m-1" role="button">قبول</a>';
               }else{
-                echo '<a href="?unaccp&id='.$video['id'].'" class="btn btn-warning" role="button">تعليق النشر</a>';
+                echo '<a href="?unaccp&id='.$video['id'].'" class="btn btn-warning m-1" role="button">تعليق النشر</a>';
               }
 
 

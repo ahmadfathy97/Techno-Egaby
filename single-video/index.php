@@ -41,7 +41,7 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
           <h2 class="m-2">التعليقات</h2>
         </div>
         <div class="col-md-12 comments-container pt-3 pb-3 border">
-          <ul class="comments">
+          <ul class="comments" id="comments">
             <li class="p-2 rounded m-1">
               <h3> صاحب الكومنت </h3>
               <p> الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت </p>
@@ -51,18 +51,18 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
       </div>
 
       <div class="row">
+
         <div class="col-md-12 border p-3">
-          <form class="" action="index.html" method="post">
-            <div class="form-group">
-              <label>الاسم</label>
-              <input type="text" required maxlength="20" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>التعليق</label>
-              <textarea required class="form-control"></textarea>
-            </div>
-            <input type="submit" class="btn btn-warning" value="اضافة تعليق">
-          </form>
+          <div class="err-container"></div>
+          <div class="form-group">
+            <label>الاسم</label>
+            <input type="text" id="comment-owner" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>التعليق</label>
+            <textarea id="comment-body" class="form-control"></textarea>
+          </div>
+          <button class="btn btn-warning" id="add-comment">إضافة تعليق</button>
         </div>
       </div>
 
@@ -103,7 +103,7 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
   <?php
     include '../components/footer.php';
   ?>
-  <!-- <script src="./script/complainment.js"></script> -->
+  <script src="./script/add-comment.js"></script>
 
 </body>
 </html>
