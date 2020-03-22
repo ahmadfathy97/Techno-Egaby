@@ -1,4 +1,4 @@
-<?php include '../../config/connDB.php'; ?>
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
