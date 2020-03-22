@@ -25,16 +25,16 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content" >
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">صاحب الفيديو</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalLabel">كيفية المساهمة</h5>
+          <button type="button" id="close-vid-1" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <iframe src="https://www.youtube.com/embed/UHp2sJLscGk" class="m-1" border-0 width="100%" style="height:60vh" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="home-video" src="https://www.youtube.com/embed/UHp2sJLscGk?enablejsapi=1&html5=1" class="m-1" border-0 width="100%" style="height:60vh" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
+          <button type="button" id="close-vid-2" class="btn btn-warning" data-dismiss="modal">إغلاق</button>
         </div>
       </div>
     </div>
@@ -43,6 +43,7 @@
   <?php
     include './components/footer.php';
   ?>
+  <script src="https://www.youtube.com/player_api"></script>
   <script src="./public/script/home.js"></script>
 </body>
 </html>

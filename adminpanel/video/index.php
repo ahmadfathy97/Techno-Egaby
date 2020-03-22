@@ -6,18 +6,29 @@ if (isset($_SESSION['user'])) {
   include '../../connDB.php'; 
   if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
     $id_video = $_GET['id'];
+    //accept video
     if (isset($_GET['accp'])) {
       $update =$conn->prepare("UPDATE video SET accept= 1  WHERE id='$id_video'") ;
       $update->execute();
       header('location:../index.php');
       
     }
+    //Unaccept video
     if (isset($_GET['unaccp'])) {
       $update =$conn->prepare("UPDATE video SET accept= 0  WHERE id='$id_video'") ;
       $update->execute();
       header('location:../index.php');
       
     }
+    //Delete video
+    if (isset($_GET['del'])) {
+        echo "DELTE";
+        /*
+        $del = $conn->prepare("DELETE FROM video WHERE id = '$id_video'");
+        $del->execute();
+        header('location:../index.php');*/
+    }
+
     $Allvideo=$conn->prepare("SELECT * FROM video WHERE id = '$id_video' ");
     $Allvideo->execute();
     $video=$Allvideo->fetch();
