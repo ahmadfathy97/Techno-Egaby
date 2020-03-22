@@ -40,14 +40,24 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
         <div class="col-md-12">
           <h2 class="m-2">التعليقات</h2>
         </div>
-        <div class="col-md-12 comments-container pt-3 pb-3 border">
-          <ul class="comments" id="comments">
-            <li class="p-2 rounded m-1">
-              <h3> صاحب الكومنت </h3>
-              <p> الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت  الكومنت </p>
-            </li>
-          </ul>
-        </div>
+        ';
+        $allcomments=$conn->prepare("SELECT * from comment  WHERE  id_video= '$id_video'");
+        $allcomments->execute();
+        $comments = $allcomments->fetchAll();
+        foreach ($comments as $comment) {
+          echo 
+          '
+          <div class="col-md-12 comments-container pt-3 pb-3 border">
+            <ul class="comments" id="comments">
+              <li class="p-2 rounded m-1">
+                <h3>'.$comment['name'].'</h3>
+                <p>'.$comment['comment'].'</p>
+              </li>
+            </ul>
+          </div>
+          ';
+        }
+        echo'
       </div>
 
       <div class="row">
