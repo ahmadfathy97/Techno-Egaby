@@ -79,7 +79,7 @@
                 class="form-control" ></textarea>
             </div>
             <div class="form-group">
-              <input type="submit" value="إرسال" class="form-control btn btn-warning" />
+              <input type="submit" name="send" value="إرسال" class="form-control btn btn-warning" />
             </div>
           </form>
         </div>
