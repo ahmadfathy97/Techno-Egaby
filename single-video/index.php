@@ -18,6 +18,11 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
   $allVaideo->execute();
   $video = $allVaideo->fetch();
   $count =  $allVaideo->rowCount();
+
+  // fetch comments
+  $allcomments=$conn->prepare("SELECT * from comment  WHERE  id_video= '$id_video'");
+  $allcomments->execute();
+  $comments = $allcomments->fetchAll();
   if ($count != 1 || $video['accept']==0) {
     echo '<div class="alert alert-danger">لا يوجد هذا الفيديو</div>';
   }else{
@@ -40,24 +45,18 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
         <div class="col-md-12">
           <h2 class="m-2">التعليقات</h2>
         </div>
-        ';
-        $allcomments=$conn->prepare("SELECT * from comment  WHERE  id_video= '$id_video'");
-        $allcomments->execute();
-        $comments = $allcomments->fetchAll();
-        foreach ($comments as $comment) {
-          echo 
-          '
           <div class="col-md-12 comments-container pt-3 pb-3 border">
-            <ul class="comments" id="comments">
+            <ul class="comments" id="comments">';
+            foreach ($comments as $comment) {
+              echo'
               <li class="p-2 rounded m-1">
                 <h3>'.$comment['name'].'</h3>
                 <p>'.$comment['comment'].'</p>
-              </li>
-            </ul>
-          </div>
-          ';
-        }
+              </li>';
+            }
         echo'
+        </ul>
+      </div>
       </div>
 
       <div class="row">
