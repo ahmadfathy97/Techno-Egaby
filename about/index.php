@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="col-md-12 mt-5">
-          <div class="links d-flex alig-items-center justify-content-center">
+          <div class="links d-flex alig-items-center justify-content-center flex-wrap">
             <a class="m-2 text-primary font-weight-bold" href="https://www.facebook.com/TechnoEgaby/"
             target="_blank"
             rel="noopener">facebook page</a>
