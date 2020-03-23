@@ -10,7 +10,6 @@ if (isset($_SESSION['user'])) {
       $vid_link     = filter_var($_POST['vid_link'],FILTER_SANITIZE_URL);
       $vid_desc     = filter_var($_POST['vid_desc'],FILTER_SANITIZE_STRING);
       $name       = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
-      $call       = filter_var($_POST['call'],FILTER_SANITIZE_STRING);
       $err = array();
       //Valdate video title
       if (empty($vid_title)) {
@@ -57,13 +56,6 @@ if (isset($_SESSION['user'])) {
         $err[]= "the name must leth than 50 char ";
       }
 
-      //validate call
-      if (strlen($call)<3 && !empty($call)) {
-        $err[]= "the call must more than 3 char ";
-      }elseif (strlen($call)>=300) {
-        $err[]= "the call video must leth than 300 char ";
-      }
-
       if (!empty($err)) {
         foreach ($err as $msgError) {
           echo '<div class="alert alert-danger">' . $msgError . '</div>';
@@ -73,8 +65,7 @@ if (isset($_SESSION['user'])) {
         $update =$conn->prepare("UPDATE video SET vid_title = '$vid_title',
                               vid_url   ='$vid_link',
                               vid_desc = '$vid_desc' ,
-                              name  = '$name' ,
-                              call_me = '$call' WHERE id='$id_video'") ;
+                              name  = '$name' WHERE id='$id_video'") ;
         $update->execute();
         header('location:../video?id='.$id_video.'');
       }
@@ -119,6 +110,11 @@ if (isset($_SESSION['user'])) {
                         value="<?php echo $video['vid_url'] ; ?>"/>
                     </div>
                     <div class="form-group">
+                      <label>وصف الفيديو</label>
+                      <textarea name="vid_desc" class="form-control" required
+                        oninput="this.setCustomValidity('')"><?php echo $video['vid_desc'] ; ?></textarea>
+                    </div>
+                    <div class="form-group">
                       <label>اسم المشارك</label>
                       <input name="name" value="<?php echo $video['name'] ; ?>" type="text" required
                       minlength="3"
@@ -126,19 +122,7 @@ if (isset($_SESSION['user'])) {
                       oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-50) حرف فقط')"
                       oninput="this.setCustomValidity('')" class="form-control" />
                     </div>
-                    <div class="form-group">
-                      <label>وصف الفيديو</label>
-                      <textarea name="vid_desc" class="form-control" required
-                        oninput="this.setCustomValidity('')"><?php echo $video['vid_desc'] ; ?></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>روابط التواصل او الهاتف</label>
-                      <textarea name="call" class="form-control" required
-                        minlength="3"
-                        maxlength="500"
-                        oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-500) حرف فقط')"
-                        oninput="this.setCustomValidity('')"><?php echo $video['call_me'] ; ?></textarea>
-                    </div>
+                    
                     <div class="form-group">
                       <input type="submit" name="update" value="تعديل" class="form-control btn btn-primary" />
                     </div>

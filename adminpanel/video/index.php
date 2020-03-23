@@ -10,19 +10,31 @@ if (isset($_SESSION['user'])) {
     if (isset($_GET['accp'])) {
       $update =$conn->prepare("UPDATE video SET accept= 1  WHERE id='$id_video'") ;
       $update->execute();
-      header('location:../');
+      echo '<div class="alert alert-success shadow border-warning">تمت الموافقه على هذا الفيديو</div>';
+      header( "Refresh:1; url=?id=$id_video");
     }
     //Unaccept video
     if (isset($_GET['unaccp'])) {
       $update =$conn->prepare("UPDATE video SET accept= 0  WHERE id='$id_video'") ;
       $update->execute();
-      header('location:../');
+      echo '<div class="alert alert-success shadow border-warning">تم تعليق نشر هذا الفيديو</div>';
+      header( "Refresh:1; url=?id=$id_video");
     }
     //Delete video
     if (isset($_GET['del'])) {
         $del = $conn->prepare("DELETE FROM video WHERE id = '$id_video'");
         $del->execute();
-        header('location:../');
+        echo '<div class="alert alert-success shadow border-warning">تم حذف هذا الفيديو بنجاح</div>';
+        header( "Refresh:1; url=../");
+    }
+    //delete Comments
+    
+    if (isset($_GET['delComm'])&&isset($_GET['idComm'])) {
+      $id_comment=$_GET['idComm'];
+      $delComm = $conn->prepare("DELETE FROM comment WHERE id = '$id_comment'");
+      $delComm->execute();
+      echo '<div class="alert alert-success shadow border-warning">تم حذف التعليق بنجاح</div>';
+      header( "Refresh:1; url=?id=$id_video");
     }
 
     $Allvideo=$conn->prepare("SELECT * FROM video WHERE id = '$id_video' ");
@@ -48,7 +60,7 @@ if (isset($_SESSION['user'])) {
             <h2 class="video-title">'.$video['vid_title'].'</h2>
             <p class="small-desc">'.$video['vid_desc'].'</p>
             <h3 class="">'.$video['name'].'</h3>
-            <p class="">'.$video['call_me'].'</p>
+
             <iframe src="https://www.youtube.com/embed/'.$arr['v'].'" class="m-1" border-0 width="100%" style="height:60vh" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="buttons">
               <a href="#" class="btn btn-danger float-right m-1" role="button" data-toggle="modal" data-target="#exampleModal">حذف</a>
@@ -65,6 +77,31 @@ if (isset($_SESSION['user'])) {
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="m-2">التعليقات</h2>
+        </div>
+          <div class="col-md-12 comments-container pt-3 pb-3 border">
+            <ul class="comments" id="comments">';
+             // fetch comments
+              $allcomments=$conn->prepare("SELECT * from comment  WHERE  id_video= '$id_video'");
+              $allcomments->execute();
+              $comments = $allcomments->fetchAll();
+            foreach ($comments as $comment) {
+              echo'
+              <li class="p-2 rounded m-1">
+                <h3>'.$comment['name'].'</h3>
+                <p>'.$comment['comment'].'</p>
+                <a href="?delComm&id='.$comment['id_video'].'&idComm='.$comment['id'].'" class="btn btn-danger pull-left">حذف</a>
+                <hr>
+              </li>';
+            }
+        echo'
+        </ul>
+      </div>
+      </div>
+
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

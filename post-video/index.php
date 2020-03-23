@@ -7,8 +7,6 @@
     $vid_link     = filter_var($_POST['vid_link'],FILTER_SANITIZE_URL);
     $vid_desc     = filter_var($_POST['vid_desc'],FILTER_SANITIZE_STRING);
     $name       = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
-    $call       = filter_var($_POST['call'],FILTER_SANITIZE_STRING);
-
     $err = array();
     //Valdate video title
     if (empty($vid_title)) {
@@ -55,24 +53,18 @@
       $err[]= "the name must leth than 50 char ";
     }
 
-    //validate call
-    if (strlen($call)<3 && !empty($call)) {
-      $err[]= "the call must more than 3 char ";
-    }elseif (strlen($call)>=500) {
-      $err[]= "the call video must leth than 300 char ";
-    }
-
     if (!empty($err)) {
       foreach ($err as $msgError) {
         echo '<div class="alert alert-danger">' . $msgError . '</div>';
       }
     }else{
       //insert DB
-      $ins = "INSERT INTO video (vid_title , vid_url , vid_desc , name , call_me , accept)
-                VALUES('$vid_title' , '$vid_link' , '$vid_desc ','$name','$call' ,0 )";
+      $ins = "INSERT INTO video (vid_title , vid_url , vid_desc , name  , accept)
+                VALUES('$vid_title' , '$vid_link' , '$vid_desc ','$name' ,0 )";
       $q_ins = $conn->prepare($ins);
       $q_ins->execute();
-      echo '<div class="alert alert-warning shadow border-warning">شكرا لمساهمتك سيتم مراجعة الفيديو والموافقة عليه في اسرع وقت</div>';
+      echo '<div class="alert alert-success shadow border-warning">شكرا لمساهمتك سيتم مراجعة الفيديو والموافقة عليه في اسرع وقت</div>';
+      header( "Refresh:3; url=../post-video");
     }
 
   }
@@ -98,7 +90,8 @@
                 oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-100) حرف فقط')"
                 oninput="this.setCustomValidity('')"
                 class="form-control"
-                name="vid_title" />
+                name="vid_title" 
+                value="<?php if(isset($vid_title)){echo $vid_title ;} ?>" />
             </div>
             <div class="form-group">
               <label>رابط الفيديو</label>
@@ -106,7 +99,8 @@
                 oninvalid="this.setCustomValidity('يجب ان يحتوي هذا الحقل على رابط الفيديو')"
                 oninput="this.setCustomValidity('')"
                 class="form-control"
-                name="vid_link"/>
+                name="vid_link"
+                value="<?php if(isset($vid_link)){echo$vid_link ;} ?>"/>
             </div>
             <div class="form-group">
               <label>وصف الفيديو</label>
@@ -114,7 +108,7 @@
                 minlength="3"
                 maxlength="500"
                 oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-500) حرف فقط')"
-                oninput="this.setCustomValidity('')"></textarea>
+                oninput="this.setCustomValidity('')"><?php if(isset($vid_desc)){echo $vid_desc;} ?></textarea>
             </div>
             <div class="form-group">
               <label>اسم المشارك</label>
@@ -122,15 +116,8 @@
                 minlength="3"
                 maxlength="50"
                 oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-50) حرف فقط')"
-                oninput="this.setCustomValidity('')" class="form-control" />
-            </div>
-            <div class="form-group">
-              <label>روابط التواصل او الهاتف</label>
-              <textarea name="call" class="form-control" required
-                minlength="3"
-                maxlength="500"
-                oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-500) حرف فقط')"
-                oninput="this.setCustomValidity('')"></textarea>
+                oninput="this.setCustomValidity('')" class="form-control"
+                value="<?php if(isset($name)){echo$name ;} ?>" />
             </div>
             <div class="form-group">
               <input type="submit" name="upload" value="نشر" class="form-control btn btn-warning" />

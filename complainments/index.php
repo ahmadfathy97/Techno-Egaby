@@ -14,8 +14,8 @@
   }
   //validate  title msg
   if (empty($msg_title)) {
-   $err[]="Enter message title";
-  }elseif (strlen($msg_title)<=3) {
+   $err[]="";
+  }elseif (strlen($msg_title)<3) {
     $err[]="Enter message more than 3 char";
   }elseif (strlen($msg_title)>70) {
     $err[]="Enter message less than 70 char";
@@ -23,7 +23,7 @@
   //validate msg
   if(empty($msg)) {
    $err[]="Enter message title";
-  }elseif (strlen($msg_title)<=3) {
+  }elseif (strlen($msg_title)<3) {
     $err[]="Enter message more than 3 char";
   }elseif (strlen($msg_title)>900) {
     $err[]="Enter message less than 70 char";
