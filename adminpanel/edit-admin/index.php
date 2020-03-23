@@ -23,23 +23,24 @@ if (isset($_SESSION['user'])) {
       $q_chk_user->execute();
       $count_chk=$q_chk_user->rowCount();
       if ($count_chk!=0) {
-        $err[]="Sorry the username exists";
+        $err[]="عفوا اسم المستخدم موجود قم بتغيير اسم المستخدم وحاول مره اخرى ";
       }
       if (empty($username)) {
           $err[]="Enter username  ";
-      }elseif (strlen($username)<=3) {
-          $err[]="Please enter username more than 3 characters";
+      }elseif (strlen($username)<5) {
+          $err[]="لايمكن ان يكون اسم المستخدم اقل من 5 احرف ولا اكثر من 30 حرف";
       }elseif (strlen($username)>30) {
-          $err[]="Please enter username less than 30 characters";
+          $err[]="لا يمكن ان يكون اسم المستخدم اقل من 3 احرف ولا اكثر من 30 حرف ";
       }
 
       if (strlen($password)>30) {
-        $err[]="Please enter Password less than 30 characters";
+        $err[]="لايمكن ان تكون كلمة المرور أكثر من 30 ";
       }elseif (strlen($password)<5 && !empty($password)) {
-        $err[]="Please enter password more than 5 characters";
+        $err[]="لايمكن ان تكون كلمة المرور اقل من 5";
       }else{
+        
         if ($password != $confirm_password) {
-          $err[]="error comfirmed password";
+          $err[]="كلمة المرور غير متطابقه  ";
         }
       }
       if (!empty($err)) {
@@ -81,7 +82,7 @@ if (isset($_SESSION['user'])) {
               <div class="form-group">
                 <label>تأكيد كلمة السر</label>
                 <input name="confirm_password" minlength="5" maxlength="30" oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (5-30) حرف فقط')"
-                oninput="this.setCustomValidity('')" value="<?php if(isset($confirm_password)){echo $password;}  ?>"  type="password" class="form-control"  />
+                oninput="this.setCustomValidity('')" value="<?php if(isset($confirm_password)){echo $confirm_password;}  ?>"  type="password" class="form-control"  />
               </div>
               <div class="form-group">
                 <input type="submit" name="edit" value="تعديل" class="form-control btn btn-primary" />

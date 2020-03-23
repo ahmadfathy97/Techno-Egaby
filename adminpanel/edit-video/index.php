@@ -13,27 +13,27 @@ if (isset($_SESSION['user'])) {
       $err = array();
       //Valdate video title
       if (empty($vid_title)) {
-        $err[]= "the title video must write ";
+        $err[]= "اكتب عنوان الفيديو";
       }elseif (strlen($vid_title)<3) {
-        $err[]= "the title video must more than 3 char ";
-      }elseif (strlen($vid_title)>=100) {
-        $err[]= "the title video must leth than 100 char ";
+        $err[]= "يجب ان يكون العنوان من 3 احرف الى 100 حرف ";
+      }elseif (strlen($vid_title)>100) {
+        $err[]= "يجب ان يكون العنوان من 3 احرف الى 100 حرف ";
       }
       //validate URL  video
       if (empty($vid_link)) {
-        $err[]= "the URL  video must write ";
+        $err[]= "قم بكتابه اللينك الخاص بالفيديو";
        }else{
         if (filter_var($_POST['vid_link'],FILTER_VALIDATE_URL)==false) {
-          $err[]="the video link is invald";
+          $err[]="لينك غير صالح";
         }else{
           $host    = parse_url($_POST['vid_link'],PHP_URL_HOST);
           $protcol = parse_url($_POST['vid_link'],PHP_URL_SCHEME);
           if ($host != "www.youtube.com" || $protcol !="https") {
-            $err[]= "link not youtube";
+            $err[]= "من فضلك تأكد انه لينك يوتيوب";
           }else{
             parse_str(parse_url($_POST['vid_link'],PHP_URL_QUERY),$arr);
             if (!isset($arr['v'])) {
-              $err[]= "link not id video ";
+              $err[]= "لينك غير صالح";
             }
           }
         }
@@ -42,18 +42,18 @@ if (isset($_SESSION['user'])) {
 
       //validate description video
       if (strlen($vid_desc)<3 && !empty($vid_desc)) {
-        $err[]= "the description video must more than 3 char ";
-      }elseif (strlen($vid_desc)>=400) {
-        $err[]= "the description video must leth than 400 char ";
+        $err[]= "وصف الفيدو يجب ان يكون من 3 الى 500 حرف";
+      }elseif (strlen($vid_desc)>500) {
+        $err[]= "وصف الفيدو يجب ان يكون من 3 الى 500 حرف";
       }
 
       //Valdate name
       if (empty($name)) {
-        $err[]= "the name  video must write ";
+        $err[]= "قم بكتابة اسم المشارك فى الفيديو";
       }elseif (strlen($name)<3) {
-        $err[]= "the name must more than 3 char ";
+        $err[]= "اسم المشارك يجب ان يكون من 3 الى اقل من 50 حرف";
       }elseif (strlen($name)>=50) {
-        $err[]= "the name must leth than 50 char ";
+        $err[]= "اسم المشارك يجب ان يكون من 3 الى اقل من 50 حرف";
       }
 
       if (!empty($err)) {
@@ -67,7 +67,8 @@ if (isset($_SESSION['user'])) {
                               vid_desc = '$vid_desc' ,
                               name  = '$name' WHERE id='$id_video'") ;
         $update->execute();
-        header('location:../video?id='.$id_video.'');
+        echo "<div class='alert alert-primary'>تم التعديل بنجاح</div>";
+        header( "Refresh:1; url=../video?id=$id_video");
       }
 
     }
