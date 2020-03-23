@@ -10,23 +10,23 @@
 
   $err = array();
   if (filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)==false) {
-    $err[]="email is invalid";
+    $err[]="بريد الكترونى غير صالح";
   }
   //validate  title msg
   if (empty($msg_title)) {
-   $err[]="";
+   $err[]="قم بكتابة عنوان الرساله";
   }elseif (strlen($msg_title)<3) {
-    $err[]="Enter message more than 3 char";
+    $err[]="يجب ان يكون عنوان الرساله من 3 احرف الى اقل من 70 حرف";
   }elseif (strlen($msg_title)>70) {
-    $err[]="Enter message less than 70 char";
+    $err[]="يجب ان يكون عنوان الرساله من 3 احرف الى اقل من 70 حرف";
   }
   //validate msg
   if(empty($msg)) {
-   $err[]="Enter message title";
+   $err[]="قم بكتابةالرساله";
   }elseif (strlen($msg_title)<3) {
-    $err[]="Enter message more than 3 char";
+    $err[]="يجب ان يكون الرساله من 3 احرف الى اقل من 900 حرف";
   }elseif (strlen($msg_title)>900) {
-    $err[]="Enter message less than 70 char";
+    $err[]="يجب ان يكون عنوان الرساله من 3 احرف الى اقل من 900 حرف";
   }
 
   if (!empty($err)) {

@@ -7,8 +7,8 @@ if (isset($_SESSION['user'])) {
  header('location:../');
 }
 if (isset($_POST['login'])) {
-  $user=$_POST['user'];
-  $pass=sha1($_POST['pass']);
+  $user=filter_var($_POST['user'],FILTER_SANITIZE_STRING);
+  $pass=sha1(filter_var($_POST['pass'],FILTER_SANITIZE_STRING));
   $q_accsess_user=$conn->prepare("SELECT * FROM users
               WHERE user='$user' AND pass='$pass'");
   $q_accsess_user->execute();

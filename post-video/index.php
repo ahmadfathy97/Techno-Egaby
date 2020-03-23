@@ -10,27 +10,27 @@
     $err = array();
     //Valdate video title
     if (empty($vid_title)) {
-      $err[]= "the title video must write ";
+      $err[]= "اكتب عنوان الفيديو ";
     }elseif (strlen($vid_title)<3) {
-      $err[]= "the title video must more than 3 char ";
-    }elseif (strlen($vid_title)>=100) {
-      $err[]= "the title video must leth than 100 char ";
+      $err[]= "يجب ان لايقل عنوان الفيديو عن 3 احرف ولا يزيد عن 100 ";
+    }elseif (strlen($vid_title)>100) {
+      $err[]= "يجب ان لايقل عنوان الفيديو عن 3 احرف ولا يزيد عن 100 ";
     }
     //validate URL  video
     if (empty($vid_link)) {
-      $err[]= "the URL  video must write ";
+      $err[]= "قم بكتابة لينك الفيديو";
      }else{
       if (filter_var($_POST['vid_link'],FILTER_VALIDATE_URL)==false) {
-        $err[]="the video link is invald";
+        $err[]="لينك غير صالح";
       }else{
         $host    = parse_url($_POST['vid_link'],PHP_URL_HOST);
         $protcol = parse_url($_POST['vid_link'],PHP_URL_SCHEME);
         if (($host != "www.youtube.com" && $host != "youtu.be" )|| $protcol !="https" ) {
-          $err[]= "link not youtube";
+          $err[]= "من فضلك تأكد انه لينك يوتيوب";
         }else{
           parse_str(parse_url($_POST['vid_link'],PHP_URL_QUERY),$arr);
           if (!isset($arr['v'])) {
-            $err[]= "link not id video ";
+            $err[]= "لينك غير صالح";
           }
         }
       }
@@ -39,18 +39,18 @@
 
     //validate description video
     if (strlen($vid_desc)<3 && !empty($vid_desc)) {
-      $err[]= "the description video must more than 3 char ";
-    }elseif (strlen($vid_desc)>=500) {
-      $err[]= "the description video must leth than 500 char ";
+      $err[]= "وصف الفيدو يجب ان يكون من 3 الى 500 حرف";
+    }elseif (strlen($vid_desc)>500) {
+      $err[]= "وصف الفيدو يجب ان يكون من 3 الى 500 حرف";
     }
 
     //Valdate name
     if (empty($name)) {
-      $err[]= "the name  video must write ";
+      $err[]= "قم بكتابة اسم المشارك فى الفيديو";
     }elseif (strlen($name)<3) {
-      $err[]= "the name must more than 3 char ";
+      $err[]= "اسم المشارك يجب ان يكون من 3 الى اقل من 50 حرف";
     }elseif (strlen($name)>=50) {
-      $err[]= "the name must leth than 50 char ";
+      $err[]= "اسم المشارك يجب ان يكون من 3 الى اقل من 50 حرف";
     }
 
     if (!empty($err)) {
@@ -64,7 +64,7 @@
       $q_ins = $conn->prepare($ins);
       $q_ins->execute();
       echo '<div class="alert alert-success shadow border-warning">شكرا لمساهمتك سيتم مراجعة الفيديو والموافقة عليه في اسرع وقت</div>';
-      header( "Refresh:3; url=../post-video");
+      header( "Refresh:4; url=../videos");
     }
 
   }
