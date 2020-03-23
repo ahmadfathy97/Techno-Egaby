@@ -71,7 +71,7 @@ if (isset($_SESSION['user'])) {
             <form action="" method="post">
               <div class="form-group">
                 <label>اسم المستخدم</label>
-                <input name="username" minlength="3" maxlength="30" oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (5-30) حرف فقط')"
+                <input name="username" minlength="5" maxlength="30" oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (5-30) حرف فقط')"
                 oninput="this.setCustomValidity('')" value="<?php if(isset($username)){echo $username;}else{echo $user['user'];}  ?>" type="text" required class="form-control" />
               </div>
               <div class="form-group">
