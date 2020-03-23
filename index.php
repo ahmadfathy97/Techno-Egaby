@@ -16,7 +16,7 @@ ob_start();
         <h1 class="text-center text-dark title font-weight-bold">تكنو-إيجابي (Techno - Egaby)</h1>
         <p class="text-center text-secondary" id="desc"></p>
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-          طريقة المساهمة
+          طريقة المشاركه
         </button>
       </div>
     </div>
