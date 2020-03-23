@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 if (isset($_SESSION['user'])) {
     include '../components/header.php';
@@ -99,4 +100,5 @@ if (isset($_SESSION['user'])) {
 }else{
   header("location:../index.php");
 }
+ob_end_flush();
 ?>

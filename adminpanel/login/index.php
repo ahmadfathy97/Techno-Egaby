@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 include '../components/header.php';
 include '../../connDB.php';
@@ -49,6 +50,8 @@ if (isset($_POST['login'])) {
       </div>
     </div>
   </div>
-  <?php include '../components/footer.php'; ?>
+  <?php include '../components/footer.php'; 
+ob_end_flush();
+  ?>
 </body>
 </html>

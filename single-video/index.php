@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
   include '../components/header.php';
   include '../connDB.php';
 ?>
@@ -111,6 +111,7 @@ if (isset($_GET['id'])&& is_numeric($_GET['id'])) {
 
   <?php
     include '../components/footer.php';
+ob_end_flush();
   ?>
   <script src="./script/add-comment.js"></script>
 

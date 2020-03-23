@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 if (isset($_SESSION['user'])) {
   include '../../connDB.php';
@@ -140,6 +141,7 @@ if (isset($_SESSION['user'])) {
   header('location:login');
 }
 include '../components/footer.php';
+ob_end_flush();
 ?>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+ob_start();
   include '../components/header.php';
   if (isset($_POST['send'])) {
   $email      = $_POST['email'];
@@ -90,6 +91,7 @@
 
   <?php
     include '../components/footer.php';
+ob_end_flush();
   ?>
 </body>
 </html>

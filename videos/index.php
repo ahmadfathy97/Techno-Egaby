@@ -1,4 +1,5 @@
 <?php
+ob_start();
   include '../connDB.php';
   include '../components/header.php';
 ?>
@@ -59,6 +60,7 @@
   </div>
   <?php
     include '../components/footer.php';
+ob_end_flush();
   ?>
 </body>
 </html>

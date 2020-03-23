@@ -1,4 +1,5 @@
 <?php
+ob_start();
   include './components/header.php';
    include "connDB.php";
 ?>
@@ -42,6 +43,7 @@
 
   <?php
     include './components/footer.php';
+ob_end_flush();
   ?>
   <script src="https://www.youtube.com/player_api"></script>
   <script src="./public/script/home.js"></script>

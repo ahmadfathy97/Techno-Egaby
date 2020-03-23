@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 if (isset($_SESSION['user'])) {
   include './components/header.php';
@@ -76,6 +77,8 @@ if (isset($_SESSION['user'])) {
 </head>
 <body>
 
-  <?php include './components/footer.php'; ?>
+  <?php include './components/footer.php';
+
+ob_end_flush(); ?>
 </body>
 </html>
