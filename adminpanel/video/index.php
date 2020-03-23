@@ -28,13 +28,12 @@ if (isset($_SESSION['user'])) {
         header( "Refresh:1; url=../");
     }
     //delete Comments
-    
+
     if (isset($_GET['delComm'])&&isset($_GET['idComm'])) {
       $id_comment=$_GET['idComm'];
       $delComm = $conn->prepare("DELETE FROM comment WHERE id = '$id_comment'");
       $delComm->execute();
-      echo '<div class="alert alert-success shadow border-warning">تم حذف التعليق بنجاح</div>';
-      header( "Refresh:1; url=?id=$id_video");
+      //header( "Refresh:1; url=?id=$id_video");
     }
 
     $Allvideo=$conn->prepare("SELECT * FROM video WHERE id = '$id_video' ");
@@ -51,6 +50,15 @@ if (isset($_SESSION['user'])) {
   include '../components/nav.php';
    parse_str(parse_url($video['vid_url'],PHP_URL_QUERY),$arr);
   echo '
+    <style>
+      .comments li{
+        list-style-type: none;
+        background: #eee
+      }
+      .comments li:nth-of-type(odd){
+        background: #fee59a
+      }
+    </style>
     <div class="container">
 
       <div class="row mt-5">
@@ -93,8 +101,7 @@ if (isset($_SESSION['user'])) {
               <li class="p-2 rounded m-1">
                 <h3>'.$comment['name'].'</h3>
                 <p>'.$comment['comment'].'</p>
-                <a href="?delComm&id='.$comment['id_video'].'&idComm='.$comment['id'].'" class="btn btn-danger pull-left">حذف</a>
-                <hr>
+                <button data-id="' .$comment['id_video'] .'" data-idcomm="'. $comment['id'] .'" class="btn btn-danger delete-comment">حذف</button>
               </li>';
             }
         echo'
@@ -138,5 +145,6 @@ if (isset($_SESSION['user'])) {
 ?>
 
   <?php include '../components/footer.php'; ?>
+  <script src="./script/deleteComment.js"></script>
 </body>
 </html>
