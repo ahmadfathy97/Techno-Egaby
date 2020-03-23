@@ -5,7 +5,7 @@ ob_start();
 ?>
   <link rel="stylesheet" href="./style/about.css">
   <style media="screen">
-    .team .col-md-4 div{
+    .team .col-md-3 div{
       background: #ebebeb !important;
     }
   </style>
@@ -23,21 +23,29 @@ ob_start();
           <p>مبادرة من قسم تكنولوجيا التعليم بكلية التربية النوعية بجامعة الفيوم، تهدف لتوظيف أدوات ومحتوى التعليم الإلكتروني لخدمة المجتمع</p>
         </div>
         <div class="row team">
-          <div class="col-md-4 founder">
+          <div class="col-md-3 founder">
             <div class="m-2 rounded shadow py-5 px-1 bg-warning">
-              <h3>د/احمد صالح</h3>
+              <h3>د\ احمد محمود صالح</h3>
               <p>مؤسس المبادرة</p>
               <a href="https://www.facebook.com/ahmedsaleh1988" target="_blank" rel="noopener">facebook</a>
             </div>
           </div>
-          <div class="col-md-4 founder">
+          <div class="col-md-3 founder">
+            <div class="m-2 rounded shadow py-5 px-1 bg-warning">
+              <h3>د\ رباب صلاح احمد</h3>
+              <p>مؤسس المبادرة</p>
+              <a href="https://www.facebook.com/dr.rsa" target="_blank" rel="noopener">facebook</a>
+            </div>
+          </div>
+
+          <div class="col-md-3 founder">
             <div class="m-2 rounded shadow py-5 px-1 bg-warning">
               <h3>محمود عبدالفضيل</h3>
               <p>بناء الموقع</p>
               <a href="https://www.facebook.com/MAbdelfadiel" target="_blank" rel="noopener">facebook</a>
             </div>
           </div>
-          <div class="col-md-4 founder">
+          <div class="col-md-3 founder">
             <div class="m-2 rounded shadow py-5 px-1 bg-warning">
               <h3>احمد فتحي</h3>
               <p>بناء الموقع</p>
