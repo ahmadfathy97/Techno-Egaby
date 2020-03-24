@@ -3,7 +3,6 @@ ob_start();
   include '../components/header.php';
   include "../connDB.php";
 ?>
-  <link rel="stylesheet" href="./style/about.css">
   <style media="screen">
     .team .col-md-3 div{
       background: #ebebeb !important;
@@ -25,14 +24,14 @@ ob_start();
         <div class="row team">
           <div class="col-md-3 founder">
             <div class="m-2 rounded shadow py-5 px-1 bg-warning">
-              <h3>د\ احمد محمود صالح</h3>
+              <h3>د/ احمد محمود صالح</h3>
               <p>مؤسس المبادرة</p>
               <a href="https://www.facebook.com/ahmedsaleh1988" target="_blank" rel="noopener">facebook</a>
             </div>
           </div>
           <div class="col-md-3 founder">
             <div class="m-2 rounded shadow py-5 px-1 bg-warning">
-              <h3>د\ رباب صلاح احمد</h3>
+              <h3>د/ رباب صلاح احمد</h3>
               <p>مؤسس المبادرة</p>
               <a href="https://www.facebook.com/dr.rsa" target="_blank" rel="noopener">facebook</a>
             </div>
@@ -77,7 +76,7 @@ ob_start();
   </div>
 
 
-  <?php include '../components/footer.php'; 
+  <?php include '../components/footer.php';
 ob_end_flush();
   ?>
 </body>

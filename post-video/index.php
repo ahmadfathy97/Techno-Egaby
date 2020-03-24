@@ -64,7 +64,7 @@ ob_start();
                 VALUES('$vid_title' , '$vid_link' , '$vid_desc ','$name' ,0 )";
       $q_ins = $conn->prepare($ins);
       $q_ins->execute();
-      echo '<div class="alert alert-success shadow border-warning">شكرا لمساهمتك سيتم مراجعة الفيديو والموافقة عليه في اسرع وقت</div>';
+      echo '<div class="alert alert-warning shadow border-warning">شكرا لمساهمتك سيتم مراجعة الفيديو والموافقة عليه في اسرع وقت</div>';
       header( "Refresh:4; url=../videos");
     }
 
@@ -91,7 +91,7 @@ ob_start();
                 oninvalid="this.setCustomValidity(' يجب عليك ملءهذا الحقل (3-100) حرف فقط')"
                 oninput="this.setCustomValidity('')"
                 class="form-control"
-                name="vid_title" 
+                name="vid_title"
                 value="<?php if(isset($vid_title)){echo $vid_title ;} ?>" />
             </div>
             <div class="form-group">
