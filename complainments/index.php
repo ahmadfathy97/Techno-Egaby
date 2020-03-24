@@ -2,12 +2,11 @@
 ob_start();
   include '../components/header.php';
   if (isset($_POST['send'])) {
-  $email      = $_POST['email'];
-  $msg_title  = $_POST['msg_title'];
-  $msg        = $_POST['msg'];
+  $email      = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
+  $msg_title  = filter_var($_POST['msg_title'],FILTER_SANITIZE_STRING);
+  $msg        = filter_var($_POST['msg'],FILTER_SANITIZE_STRING);
   $from='from: '.$email.'/r/n';
   $my_email="mahmoudhasan509@gmail.com";
-
 
   $err = array();
   if (filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)==false) {
